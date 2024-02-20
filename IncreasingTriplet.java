@@ -6,20 +6,14 @@ public class IncreasingTriplet {
         System.out.println(increasingTriplet(new int[]{1,6,2,5,1}));
     }
     public static boolean increasingTriplet(int[] nums) {
-        int counterCheck = 0;
-        for (int i = 0; i < nums.length-1; i++) {
-            if(nums[i]<nums[i+1]){
-                counterCheck++;
-            }
-            else {
-                counterCheck = 0;
-            }
+        int i =Integer.MAX_VALUE;
+        int j =Integer.MAX_VALUE;
+        for(int n : nums) {
+            if(n <= i) i = n;
+            else if(n <=j) j = n;
+            else return true;
         }
-        if(counterCheck!=0){
-            System.out.println(counterCheck);
-            return true;
-        }
-        System.out.println(counterCheck);
         return false;
+
     }
 }
