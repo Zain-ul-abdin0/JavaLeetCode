@@ -1,17 +1,20 @@
 public class MoveZeroes {
     public static void main(String[] args){
-        int[] input = new int[] {0,1,0,3,12};
-        for (int i=0; i<input.length-1; i++){
-            int j=i;
-            while (j<input.length-1 && input[j+1]<=0){
-                    int temp = input[i];
-                    input[i] = input[i + 1];
-                    input[i + 1] = temp;
-                    j++;
+        int[] nums = new int[] {0,1,0,3,12};
+        int k=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]!=0)
+            {
+                nums[k]=nums[i];
+                k++;
             }
         }
-        for(int i=0; i<input.length;i++ ){
-            System.out.println(input[i]);
+
+        for(int i=k;i<nums.length;i++)
+        {
+            nums[i]=0;
         }
     }
 }
+
