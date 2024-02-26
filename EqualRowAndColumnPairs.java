@@ -26,7 +26,7 @@ public class EqualRowAndColumnPairs {
         }
         for(int i =0 ; i < rows.size(); i++){
             for(int j = 0 ; j < columns.size(); j++){
-                if(Arrays.toString(rows.get(i)).equals(Arrays.toString(columns.get(j)))){
+                if (Arrays.equals(rows.get(i), columns.get(j))) {
                     result++;
                 }
             }
