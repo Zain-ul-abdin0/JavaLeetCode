@@ -5,27 +5,31 @@ import java.util.Stack;
 
 public class AsteroidCollision {
     public static void main(String[] args){
-        System.out.println(Arrays.toString(asteroidCollision(new int[]{10, 2, -5})));
+        System.out.println(Arrays.toString(asteroidCollision(new int[]{8,-8})));
     }
     public static int[] asteroidCollision(int[] asteroids) {
-        int temp;
+        int check = 0;
         ArrayList<Integer> asteroidList = new ArrayList<Integer>();
         Stack<Integer> stack = new Stack<>();
-        for(int i = 0; i<asteroids.length; i++){
-            stack.push(asteroids[i]);
-        }
-        for(int i = asteroids.length-1; i>0; i--){
-            if(stack.get(i)+stack.get(i-1)<0){
-                temp = Math.max(Math.abs(stack.get(i)),Math.abs(stack.get(i-1)));
-                asteroidList.add(temp);
-                asteroids[i-1]=temp;
-
+        for(int i = 0; i<asteroids.length; i++) {
+            if (stack.isEmpty()) {
+                stack.push(asteroids[i]);
+            }else if(asteroids[i]>0){
+                stack.push(asteroids[i]);
             }
-
+            else if(asteroids[i]<0){
+                for(int j = stack.size()-1; j>=0; j--) {
+                    check = Math.abs(stack.peek());
+                    if(stack.get(j)>check){
+                        stack.pop();
+                    }else if(stack.get(j)-check==0){
+                        stack.pop();
+                    }
+                }
+            }
         }
-        System.out.println(asteroidList);
+        asteroidList.addAll(stack);
 
-
-        return null;
+        return asteroidList.stream().mapToInt(Integer::intValue).toArray();
     }
 }
