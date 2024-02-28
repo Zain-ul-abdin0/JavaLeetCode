@@ -5,31 +5,25 @@ import java.util.Stack;
 
 public class AsteroidCollision {
     public static void main(String[] args){
-        System.out.println(Arrays.toString(asteroidCollision(new int[]{8,-8})));
+        System.out.println(Arrays.toString(asteroidCollision(new int[]{10,2,-5})));
     }
     public static int[] asteroidCollision(int[] asteroids) {
-        int check = 0;
-        ArrayList<Integer> asteroidList = new ArrayList<Integer>();
-        Stack<Integer> stack = new Stack<>();
-        for(int i = 0; i<asteroids.length; i++) {
-            if (stack.isEmpty()) {
-                stack.push(asteroids[i]);
-            }else if(asteroids[i]>0){
-                stack.push(asteroids[i]);
-            }
-            else if(asteroids[i]<0){
-                for(int j = stack.size()-1; j>=0; j--) {
-                    check = Math.abs(stack.peek());
-                    if(stack.get(j)>check){
-                        stack.pop();
-                    }else if(stack.get(j)-check==0){
-                        stack.pop();
-                    }
+
+        int index = -1;
+        for (int currentAsteroid : asteroids) {
+
+            boolean currentAsteroidIsUndestroyed = true;
+            while (currentAsteroidIsUndestroyed && index >= 0 && asteroids[index] > 0 && currentAsteroid < 0) {
+                currentAsteroidIsUndestroyed = currentAsteroid + asteroids[index] < 0;
+                if (currentAsteroid + asteroids[index] <= 0) {
+                    --index;
                 }
             }
+            if (currentAsteroidIsUndestroyed) {
+                asteroids[++index] = currentAsteroid;
+            }
         }
-        asteroidList.addAll(stack);
 
-        return asteroidList.stream().mapToInt(Integer::intValue).toArray();
+        return Arrays.copyOfRange(asteroids, 0, index + 1);
     }
 }
