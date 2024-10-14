@@ -1,12 +1,13 @@
-public class Student  implements Comparable<Student> {
-    public Integer age;
+import java.util.Comparator;
 
+public class Student    {
+    public Integer age;
+    public  String name;
     public Student(Integer age, String name) {
         this.age = age;
         this.name = name;
     }
 
-    public String name;
 
     public Integer getAge() {
         return age;
@@ -32,8 +33,10 @@ public class Student  implements Comparable<Student> {
                 '}';
     }
 
-    @Override
-    public int compareTo(Student o) {
-        return this.getAge().compareTo(o.getAge());
-    }
+//    @Override
+//    public int compareTo(Student o) {
+//        return this.getAge().compareTo(o.getAge());
+//    }
+
+
 }

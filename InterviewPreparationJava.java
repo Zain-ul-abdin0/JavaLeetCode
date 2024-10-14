@@ -9,7 +9,8 @@ public class InterviewPreparationJava {
         ArrayList<Student> students = new ArrayList<>();
         students.add(student1);
         students.add(student2);
-        Collections.sort(students);
+        CustomComparFunction c = new CustomComparFunction();
+        Collections.sort(students,c);
 
         for(Student student : students){
             System.out.println(student);
