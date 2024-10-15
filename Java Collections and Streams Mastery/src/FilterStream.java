@@ -8,7 +8,7 @@ public class FilterStream {
             new Person("Bob", 30),
             new Person("Charlie", 35));
 
-    List<Person> result = persons.stream().filter((Person p) -> p.getAge() > 30 ).toList();
+        List<Person> result = persons.stream().filter((p) -> p.getAge() > 30 ).toList();
      System.out.println(result);
 }
 
